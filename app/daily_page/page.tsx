@@ -1,11 +1,10 @@
 
-
-import { request } from 'http';
 import { createClient } from '@/utils/server';
 import { ShiftProvider } from './shiftContext';
 import { LayoutProvider } from './layoutContext';
 import { ShiftHeader } from './shiftHeader';
 import { ShiftChart } from './Shiftchart/shiftchart';
+import LoginView from '../Login_page/Loginview';
 
 
 // ---------------------------------------------------------
@@ -17,7 +16,12 @@ export default async function ShiftPage( {
   }:{
     searchParams: {date?:string}
   }) {
+  
   const supabase = await createClient();
+    const {data:{user}} = await supabase.auth.getUser();
+  
+  
+    if(!user) return <LoginView/>
 
   
   
