@@ -352,7 +352,7 @@ export function ShiftChart({ tasks}: { tasks: any[]}) {
   {/*---------------------スタイルの開始------------------------*/}
   return (
     
-    <div className={`overflow-x-auto border border-gray-300 rounded-lg  ${resizing ? 'select-none' : ''}`}
+    <div className={`mx-auto border border-gray-300 rounded-lg  ${resizing ? 'select-none' : ''}`}
         style={{height:`calc(100vh - ${headerHeight}px)`}}
     >
         <div
