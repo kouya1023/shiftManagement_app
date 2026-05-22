@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# スーパー向けのシフト作成・管理アプリ
 
-## Getting Started
+自動シフト作成モデルで作成したシフトを確認し、修正することができるWebアプリケーションです。
 
-First, run the development server:
+##  プロダクトURL
+* **本番環境（デプロイ済）：** [https://shift-management-app-dusky.vercel.app/]
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##  システムアーキテクチャ・技術スタック
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+本プロダクトは、計算コストの高い「最適化エンジン」と、軽量な「Webフロントエンド・認証・DB」を分離・連携させた構成（MVP）にしています。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **バックエンド：** Python / OR-Tools (CP-SAT Solver)
+* **フロントエンド：** TypeScript / Next.js
+* **インフラ・認証：** Google OAuth 2.0 (Google認証)
+* **データベース：** supabase 
+* **ホスティング：**  Vercel 
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+##  実装機能
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **視覚的な割り当て業務のブロック操作：** 従業員に割り当てられている業務を動的なブロックとして扱い、簡単に修正を行うことができます。
+* **不足業務の確認：** その時間に必要とされている業務が割り当てられていなかった場合に、時間帯エリアに不足業務として業務カラーのバッジが表示され、一目で何が足りないかが分かります。
+* **出勤可能者の表示：**その日の公休者（出勤可能者)、希望休者、固定休者（特定の曜日で出勤が不可能）のリストを表示させ、誰が出勤可能なのか、不可能なのかが一目で分かります。
+* **労働時間情報の確認：** 従業員名の隣にその日に割り当てた勤務時間、勤務可能時間、日労働時間、月間労働時間（未実装)が属性情報として表示され、勤務可能時間外で業務が割り当てられていないかや労働時間が適切かを確認することができます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+##  導入効果（シミュレーション）
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* **シフト作成時間の短縮：** 7時間(実際の社員にヒアリング) ➔ **3時間　※個人シミュレーションのため、実際にはさらに時間を要すると思われます。**
+---
+
+## 今後のロードマップ（機能拡張予定）
+
+現在のバージョンは、１日ごとの従業員ごとのシフト確認ページのみ実装していて、シフト作成を行う際に不十分であるため、今後追加機能を実装していきたいと考えています。
+
+* **１日ごとの業務別の割り当て:** 業務別の表示を実装することで、投入する従業員が多くなったときに、特定の業務の流れを確認しやすくなると考えています。
+* **１ヶ月全体の勤務時間の表示** １ヶ月全体の全従業員の勤務時間を一覧表示させることで、連続勤務や他の従業員との整合性を確認し、従業員にシフト表を配布するときのフォーマットにします。
+* ** 印刷機能 ** 従業員にシフト表を紙で配る際に必要
+
+### 自動シフト作成モデルとの統合
+現在、自動シフト作成モデルと分離していて、私がローカルでシフトを自動作成してデータベースに流し、そのデータをアプリで取得して修正するという非効率な構造になっています。これから自動シフト作成モデルを実行できる外部サーバーなどを検討し、アプリ内で従業員の希望休やスキルなどを入力して、自動シフト作成から手動調整までできる一体型を目指していきたいです。
+  
+
+---
