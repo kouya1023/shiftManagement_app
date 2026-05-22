@@ -1,7 +1,6 @@
 'use client';
 
 import { createClient } from '@/utils/client';
-import { NextRouter } from 'next/router';
 
 export default function LoginView() {
     const  supabasePromise =  createClient();
@@ -46,7 +45,7 @@ export default function LoginView() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="p-10 bg-white my-5 rounded-xl shadow-2xl text-center">
         <h1 className="text-2xl font-bold mb-6 text-gray-800">
-          シフト管理システム
+          シフト作成アプリへようこそ
         </h1>
         
         
