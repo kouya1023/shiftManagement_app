@@ -1,6 +1,6 @@
 # スーパー向けのシフト作成・管理アプリ
 
-自動シフト作成モデル[https://github.com/kouya1023/shiftCreation_model]で作成したシフトを確認し、修正することができるWebアプリケーションです。
+自動シフト作成モデル[https://github.com/kouya1023/shiftCreation_model] で作成したシフトを確認し、修正することができるWebアプリケーションです。
 
 ##  プロダクトURL
 * **本番環境（デプロイ済）：** [https://shift-management-app-dusky.vercel.app/]
